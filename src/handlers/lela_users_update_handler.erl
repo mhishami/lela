@@ -12,7 +12,6 @@
 %% API Implementation
 -export ([update_user/2]).
 -export ([get_user/2]).
--export ([delete_user/2, done_delete/2]).
 
 -import (lela_users_handler, [ensure_exists/2]).
 
@@ -83,21 +82,3 @@ get_user(Req, State) ->
           jsx:encode([{error, <<"Malformed JSON request">>}]), Req),
       {false, Req4, State}
   end.
-
-delete_user(Req, State) ->
-  ?DEBUG("Deleting user..."),
-  try
-    {Id, Req1} = cowboy_req:binding(id, Req),
-    {ok, [_Res]} = lela_user:find(#{lela_user:id() => Id}),
-    {true, Req1, State}
-  catch
-    _:Error ->
-      ?ERROR("Error: ~p", [Error]),
-      Req4 = cowboy_req:set_resp_body(
-          jsx:encode([{error, <<"Malformed JSON request">>}]), Req),
-      {false, Req4, State}
-  end.
-
-done_delete(Req, State) ->
-  ?DEBUG("Deleting user completed..."),
-  {true, Req, State}.
