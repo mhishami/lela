@@ -22,17 +22,6 @@
       {port, 8080},
       {listeners, 10}
     ]},
-    {pools, [
-      {rentaka, [
-        {size, 10},
-        {max_overflow, 30}
-      ], [
-        {hostname, "127.0.0.1"},
-        {database, rentaka},
-        {username, "hisham"},
-        {password, "pass"}
-      ]}
-    ]},
     {mongo, [
       {seed, [{single, "127.0.0.1:27017"}]},
       {option, [

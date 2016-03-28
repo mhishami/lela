@@ -22,15 +22,6 @@ start_link() ->
 
 init([]) ->
   %% our mongo pool
-  %% get configs
-  % {ok, [{PoolName, SizeArgs, WorkerArgs}]} = application:get_env(rentaka, pools),
-  % PoolArgs = [{name, {local, PoolName}}, {worker_module, mc_worker}] ++ SizeArgs,
-  % PoolSpecs = poolboy:child_spec(PoolName, PoolArgs, WorkerArgs),
-
-  % Mongo = ?CHILD(mongo_worker, worker, [PoolName]),
-
-  % {ok, { {one_for_one, 5, 10}, [Mongo, PoolSpecs]} }.
-
   {ok, Args} = application:get_env(rentaka, mongo),
   Mongo = ?CHILD(rentaka_repo, worker, [Args]),
 
