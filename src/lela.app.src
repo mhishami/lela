@@ -1,7 +1,7 @@
-{application, rentaka, [
+{application, lela, [
   {description, "REST Server on Cowboy"},
   {vsn, "0.1.0"},
-  {registered, [rentaka]},
+  {registered, [lela]},
   {applications, [
                   kernel,
                   stdlib,
@@ -15,7 +15,7 @@
                   iso8601,
                   erlpass
                  ]},
-  {mod, { rentaka, []}},
+  {mod, { lela, []}},
   {modules, []},
   {env, [
     {http, [
@@ -25,12 +25,12 @@
     {mongo, [
       {seed, [{single, "127.0.0.1:27017"}]},
       {option, [
-        {register, rentaka},
+        {register, lela},
         {pool_size, 10},
         {max_overflow, 30}
       ]},
       {woption, [
-        {database, rentaka},
+        {database, lela},
         {login, "hisham"},
         {password, "pass"},
         {w_mode, safe}

@@ -1,8 +1,8 @@
--module(rentaka_repo).
+-module(lela_repo).
 -behaviour(gen_server).
 -define(SERVER, ?MODULE).
 
--include ("rentaka.hrl").
+-include ("lela.hrl").
 
 %% ------------------------------------------------------------------
 %% API Function Exports
@@ -26,7 +26,7 @@
 
 -record (state, {topo = undefined}).
 
--define (POOL, rentaka).
+-define (POOL, lela).
 -define (TIMEOUT, infinity).
 
 %% ------------------------------------------------------------------
@@ -37,7 +37,7 @@ topology() ->
   gen_server:call(?MODULE, {topology}).
 
 %% ============================================================================
-% rentaka_repo:find_one(DB, #{ <<"email">> => <<"hisham@gmail.com">>}).
+% lela_repo:find_one(DB, #{ <<"email">> => <<"hisham@gmail.com">>}).
 find_one(Collection, Selector) ->
   gen_server:call(?MODULE, {find_one, Collection, Selector, #{}}).
 
@@ -55,7 +55,7 @@ find(Collection, Selector, Projector, Timeout) ->
   gen_server:call(?MODULE, {find, Collection, Selector, Projector, Timeout}).
 
 %% ============================================================================
-% rentaka_repo:save(DB, Model)
+% lela_repo:save(DB, Model)
 save(Collection, Doc) ->
   gen_server:call(?MODULE, {save, Collection, Doc, ?TIMEOUT}).
 
@@ -80,7 +80,7 @@ delete(Collection, Selector, Timeout) ->
   gen_server:call(?MODULE, {delete, Collection, Selector, Timeout}).
 
 %% ============================================================================
-% rentaka_repo:ensure_index(DB, #{
+% lela_repo:ensure_index(DB, #{
 %   <<"key">> => #{<<"email">> => 1},
 %   <<"unique">> => true}
 % }).

@@ -1,4 +1,4 @@
-PROJECT = rentaka
+PROJECT = lela
 PROJECT_DESCRIPTION = Erlang REST Server
 PROJECT_VERSION = 0.1.0
 

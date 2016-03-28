@@ -1,4 +1,4 @@
--module (rentaka).
+-module (lela).
 -behaviour (application).
 
 %% Application callbacks
@@ -9,13 +9,13 @@
 %% Application callbacks
 %% ===================================================================
 start() ->
-  application:ensure_all_started(rentaka).
+  application:ensure_all_started(lela).
 
 stop() ->
-  application:stop(rentaka).
+  application:stop(lela).
 
 start(_StartType, _StartArgs) ->
-    rentaka_sup:start_link().
+    lela_sup:start_link().
 
 stop(_State) ->
     ok.

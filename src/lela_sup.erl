@@ -1,7 +1,7 @@
--module(rentaka_sup).
+-module(lela_sup).
 
 -behaviour(supervisor).
--include ("rentaka.hrl").
+-include ("lela.hrl").
 
 %% API
 -export([start_link/0]).
@@ -22,7 +22,7 @@ start_link() ->
 
 init([]) ->
   %% our mongo pool
-  {ok, Args} = application:get_env(rentaka, mongo),
-  Mongo = ?CHILD(rentaka_repo, worker, [Args]),
+  {ok, Args} = application:get_env(lela, mongo),
+  Mongo = ?CHILD(lela_repo, worker, [Args]),
 
   {ok, { {one_for_one, 5, 10}, [Mongo]} }.
