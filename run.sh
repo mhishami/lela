@@ -1,3 +1,3 @@
 #!/bin/sh
 #
-_rel/rentaka_release/bin/rentaka_release console
+_rel/lela_release/bin/lela_release console

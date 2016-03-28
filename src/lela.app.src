@@ -36,5 +36,8 @@
         {w_mode, safe}
       ]}
     ]}
+  ]},
+  {start_phases, [
+    {start_listeners, []}
   ]}
 ]}.

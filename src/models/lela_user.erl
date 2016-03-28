@@ -8,6 +8,8 @@
 -export ([find_by_email/1, authenticate/2, change_password/2]).
 -export ([save/1, update/1, delete/1, find/1, find/2]).
 
+-export ([id/0, email/0, password/0, created_at/0, updated_at/0]).
+
 -define (DB, <<"users">>).
 
 -define (ID, <<"_id">>).
@@ -35,6 +37,13 @@ get_email(User) -> maps:get(?EMAIL, User).
 
 get_password(User) -> maps:get(?PASS, User).
 
+% tags accessors
+id() -> ?ID.
+email() -> ?EMAIL.
+password() -> ?PASS.
+created_at() -> ?CREATED.
+updated_at() -> ?UPDATED.
+
 %%% ===========================================================================
 %%% API functions
 %%% ===========================================================================
@@ -48,8 +57,8 @@ change_password(User, Password) when is_map(User), is_binary(Password) ->
   Updated = User#{?PASS => erlpass:hash(Password)},
   update(Updated);
 
-change_password(Email, Password) when is_binary(Email), is_binary(Password) ->
-  User = find_by_email(Email),
+change_password(Id, Password) when is_binary(Id), is_binary(Password) ->
+  {ok, [User]} = find(#{?ID => Id}),
   Updated = User#{?PASS => erlpass:hash(Password)},
   update(Updated).
 
@@ -65,7 +74,7 @@ save(User) when is_map(User) ->
   {ok, N, U}.
 
 update(User) when is_map(User) ->
-  Selector = #{?EMAIL => maps:get(?EMAIL, User)},
+  Selector = #{?ID => maps:get(?ID, User)},
   Updated = User#{?UPDATED => iso8601:format(calendar:local_time())},
   {ok,{true,#{<<"n">> := N, <<"nModified">> := M}}} = lela_repo:update(?DB, Selector, Updated),
   {ok, N, M, Updated}.
