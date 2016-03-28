@@ -32,7 +32,10 @@ content_types_accepted(Req, State) ->
   {[{{<<"application">>, <<"json">>, []}, create_user}], Req, State}.
 
 resource_exists(Req, State) ->
-  {true, Req, State}.
+  case cowboy_req:method(Req) of
+    <<"POST">> -> {false, Req, State};
+    _          -> {true, Req, State}
+  end.
 
 list_users(Req, State) ->
   {ok, Users} = lela_user:find(#{}, #{

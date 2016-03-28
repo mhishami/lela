@@ -35,12 +35,12 @@ content_types_accepted(Req, State) ->
 
 % for DELETE
 delete_resource(Req, State) ->
-  ?DEBUG("delete_resource...."),
-  {[{{<<"application">>, <<"json">>, '*'}, delete_user}], Req, State}.
+  {Id, Req1} = cowboy_req:binding(id, Req),
+  Res = lela_user:delete(#{lela_user:id() => Id}),
+  {false, Req1, State}.
 
 delete_completed(Req, State) ->
-  ?DEBUG("delete_completed..."),
-  {[{{<<"application">>, <<"json">>, '*'}, done_delete}], Req, State}.
+  {true, Req, State}.
 
 resource_exists(Req, State) ->
   {true, Req, State}.
