@@ -35,7 +35,7 @@ content_types_accepted(Req, State) ->
 % for DELETE
 delete_resource(Req, State) ->
   {Id, Req1} = cowboy_req:binding(id, Req),
-  Res = lela_user:delete(#{lela_user:id() => Id}),
+  lela_user:delete(#{lela_user:id() => Id}),
   {false, Req1, State}.
 
 delete_completed(Req, State) ->
