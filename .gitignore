@@ -4,3 +4,4 @@ deps/
 ebin/
 log/
 lela.d
+client/node_modules/
