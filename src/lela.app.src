@@ -19,7 +19,7 @@
   {modules, []},
   {env, [
     {http, [
-      {port, 8080},
+      {port, 4500},
       {listeners, 10}
     ]},
     {mongo, [
